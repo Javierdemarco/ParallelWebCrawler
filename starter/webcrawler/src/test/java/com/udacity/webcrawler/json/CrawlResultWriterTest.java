@@ -1,14 +1,15 @@
 package com.udacity.webcrawler.json;
 
-import com.udacity.webcrawler.testing.CloseableStringWriter;
-import org.junit.jupiter.api.Test;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
+import org.junit.jupiter.api.Test;
+
+import com.udacity.webcrawler.testing.CloseableStringWriter;
 
 public final class CrawlResultWriterTest {
   @Test

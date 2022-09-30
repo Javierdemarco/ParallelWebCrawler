@@ -3,7 +3,6 @@ package com.udacity.webcrawler.profiler;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-
 import java.time.Clock;
 
 /**
@@ -12,6 +11,8 @@ import java.time.Clock;
  * <p>Requires a {@link java.time.Clock} to already be bound.
  */
 public final class ProfilerModule extends AbstractModule {
+
+  public ProfileModule() {}
   @Provides
   @Singleton
   Profiler provideProfiler(Clock clock) {

@@ -6,11 +6,14 @@ import java.io.StringWriter;
 /**
  * A {@link StringWriter} that checks if it has already been closed.
  *
- * <p>For other kinds of writers, this could be tested by checking whether {@link #close()} throws
- * an {@link IOException}, but for {@link StringWriter}s the {@link #close()} method does nothing.
+ * <p>For other kinds of writers, this could be tested by checking whether
+ * {@link #close()} throws an {@link IOException}, but for {@link StringWriter}s
+ * the {@link #close()} method does nothing.
  */
 public final class CloseableStringWriter extends StringWriter {
   private boolean closed = false;
+
+  public CloseableStringWriter() {}
 
   @Override
   public void close() throws IOException {
@@ -23,7 +26,5 @@ public final class CloseableStringWriter extends StringWriter {
   /**
    * Returns whether this writer has been closed.
    */
-  public boolean isClosed() {
-    return closed;
-  }
+  public boolean isClosed() { return closed; }
 }
