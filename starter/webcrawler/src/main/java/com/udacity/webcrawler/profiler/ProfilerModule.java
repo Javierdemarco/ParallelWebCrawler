@@ -12,8 +12,8 @@ import java.time.Clock;
  */
 public final class ProfilerModule extends AbstractModule {
 
-  public ProfileModule() {}
-  @Provides
+  public ProfilerModule() {}
+    @Provides
   @Singleton
   Profiler provideProfiler(Clock clock) {
     return new ProfilerImpl(clock);
