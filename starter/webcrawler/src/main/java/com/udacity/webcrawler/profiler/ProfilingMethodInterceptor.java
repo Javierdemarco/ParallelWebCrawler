@@ -41,12 +41,13 @@ final class ProfilingMethodInterceptor implements InvocationHandler {
     //       record how long the method call took, using the ProfilingState
     //       methods.
     boolean profiledAnnotation = method.getAnnotation(Profiled.class) != null;
-    if (profiledAnnotation) {
       Instant startMethodTime = clock.instant();
       try {
-        method.invoke(delegate, args);
+        return method.invoke(delegate, args);
       } catch (InvocationTargetException e) {
         throw e.getTargetException();
+      } catch (IllegalAccessException e) {
+        throw e;
       } finally {
         if (profiledAnnotation) {
           Instant finishMethodTime = clock.instant();
@@ -54,7 +55,5 @@ final class ProfilingMethodInterceptor implements InvocationHandler {
                        Duration.between(startMethodTime, finishMethodTime));
         }
       }
-    }
-    return method.invoke(delegate, args);
   }
 }

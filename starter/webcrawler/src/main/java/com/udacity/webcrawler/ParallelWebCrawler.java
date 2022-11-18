@@ -75,8 +75,8 @@ final class ParallelWebCrawler implements WebCrawler {
     private final String url;
     private final Instant deadline;
     private final int maxDepth;
-    private ConcurrentMap<String, Integer> counts;
-    private ConcurrentSkipListSet<String> visitedUrls;
+    private final ConcurrentMap<String, Integer> counts;
+    private final ConcurrentSkipListSet<String> visitedUrls;
 
     private CrawlRecusiveTask(String url, Instant deadline, int maxDepth,
                               ConcurrentMap<String, Integer> counts,
@@ -98,10 +98,9 @@ final class ParallelWebCrawler implements WebCrawler {
           return null;
         }
       }
-      if (visitedUrls.contains(url)) {
+      if (!visitedUrls.add(url)) {
         return null;
       }
-      visitedUrls.add(url);
       PageParser.Result result = parserFactory.get(url).parse();
       for (ConcurrentMap.Entry<String, Integer> e :
            result.getWordCounts().entrySet()) {

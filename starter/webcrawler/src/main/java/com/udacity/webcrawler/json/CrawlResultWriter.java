@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
@@ -34,12 +35,10 @@ public final class CrawlResultWriter {
    */
   public void write(Path path) {
     // This is here to get rid of the unused variable warning.
-    try {
+    try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE)){
       Objects.requireNonNull(path);
       // TODO: Fill in this method.
-      Writer writer = Files.newBufferedWriter(path);
       write(writer);
-      writer.close();
     } catch (IOException ignoredException) {
     }
   }

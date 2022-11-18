@@ -31,11 +31,8 @@ public final class ConfigurationLoader {
    */
   public CrawlerConfiguration load() {
     // TODO: Fill in this method.
-    try {
-      Reader reader = Files.newBufferedReader(path);
-      CrawlerConfiguration crawlerConfig = read(reader);
-      reader.close();
-      return crawlerConfig;
+    try (Reader reader = Files.newBufferedReader(path)){
+      return read(reader);
     } catch (IOException ignoredException) {
     }
     // return new CrawlerConfiguration.Builder().build();
