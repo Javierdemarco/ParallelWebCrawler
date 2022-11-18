@@ -47,7 +47,7 @@ final class ProfilingMethodInterceptor implements InvocationHandler {
       } catch (InvocationTargetException e) {
         throw e.getTargetException();
       } catch (IllegalAccessException e) {
-        throw e;
+        throw new RuntimeException(e);
       } finally {
         if (profiledAnnotation) {
           Instant finishMethodTime = clock.instant();
